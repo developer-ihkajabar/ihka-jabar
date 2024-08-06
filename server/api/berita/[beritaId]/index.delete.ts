@@ -5,7 +5,7 @@ export default eventHandler(async (event) => {
 
   const token = event.node.req.headers.authorization?.split(' ')[1]
   const db = event.context.cloudflare.env.DB
-  const kv = event.context.cloudflare.env.ihka_jabar_kv
+  const kv = event.context.cloudflare.env['ihka-jabar-kv']
 
   if (!token) {
     setResponseStatus(event, 401, 'Unauthorized')
@@ -13,7 +13,7 @@ export default eventHandler(async (event) => {
   }
 
   const adminId = ((await validateJWT('HS256', jwtSecret, token)).payload as { id: string }).id
-  const admin = await db.prepare('select * from admin where id = ?').bind(adminId).first()
+  // const admin = await db.prepare('select * from admin where id = ?').bind(adminId).first()
 
   await db.prepare(`
     DELETE FROM news WHERE id = ?

@@ -1,6 +1,6 @@
 export default eventHandler(async (event) => {
   const newsId = getRouterParam(event, 'newsId')
-  const kv = event.context.cloudflare.env.ihka_jabar_kv
+  const kv = event.context.cloudflare.env['ihka-jabar-kv']
 
   const image = await kv.get(`images/news/${newsId}.png`)
   if (!image) {

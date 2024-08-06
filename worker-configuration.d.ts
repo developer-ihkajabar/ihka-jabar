@@ -2,6 +2,6 @@
 // by running `wrangler types`
 
 interface Env {
-  ihka_jabar_kv: KVNamespace
-  DB: D1Database
+  'ihka-jabar-kv': KVNamespace
+  'DB': D1Database
 }
