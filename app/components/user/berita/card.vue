@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Berita } from '~~/types/Berita'
 
-const { news: { id: beritaId, cabang_id } } = defineProps<{
+const { news: { id: beritaId, cabang_id, title } } = defineProps<{
   news: Berita
 }>()
 
@@ -34,19 +34,6 @@ onMounted(() => {
         :src="imgSrc"
         class="aspect-[2/1] w-full rounded-md object-cover"
       >
-      <!-- <UseImage
-        v-if="imgSrc"
-        :src="imgSrc"
-        class="h-full w-full rounded-md object-cover"
-      >
-        <template #loading>
-          Loading..
-        </template>
-
-        <template #error>
-          Failed
-        </template>
-      </UseImage> -->
     </div>
     <div class="space-y-3">
       <div class="">
@@ -54,7 +41,7 @@ onMounted(() => {
           17 April 2024
         </p>
         <h3 class="text-base font-semibold">
-          IHKA DKI Jakarta Gelar Kompetisi Indonesia Housekeeping Olympic ke-4
+          {{ title }}
         </h3>
         <p class="text-xs">
           {{ cabang?.name ? cabang.name : 'IHKA Jawa Barat' }}
