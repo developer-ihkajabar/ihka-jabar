@@ -5,29 +5,19 @@ const _3beritaList = computed(() => beritaList.value.slice(0, 3))
 
 const items = [
   {
-    imageSrc: 'https://picsum.photos/1920/1080?random=1',
+    imageSrc: '/img/fakldsjfhlakdfjadsf.png',
     title: 'Pelatihan HouseKeeping',
     description: 'Pelatihan untuk menciptakan HouseKeeper yang profesional, handal dan efisien.',
   },
   {
-    imageSrc: 'https://picsum.photos/1920/1080?random=2',
-    title: 'Pelatihan HouseKeeping',
-    description: 'Pelatihan untuk menciptakan HouseKeeper yang profesional, handal dan efisien.',
+    imageSrc: '/img/program1.png',
+    title: 'Pelatihan Manajerial',
+    description: 'Pelatihan manajemen waktu dan manajemen sumber daya untuk meningkatkan produktivitas.',
   },
   {
-    imageSrc: 'https://picsum.photos/1920/1080?random=3',
-    title: 'Pelatihan HouseKeeping',
-    description: 'Pelatihan untuk menciptakan HouseKeeper yang profesional, handal dan efisien.',
-  },
-  {
-    imageSrc: 'https://picsum.photos/1920/1080?random=4',
-    title: 'Pelatihan HouseKeeping',
-    description: 'Pelatihan untuk menciptakan HouseKeeper yang profesional, handal dan efisien.',
-  },
-  {
-    imageSrc: 'https://picsum.photos/1920/1080?random=5',
-    title: 'Pelatihan HouseKeeping',
-    description: 'Pelatihan untuk menciptakan HouseKeeper yang profesional, handal dan efisien.',
+    imageSrc: '/img/program2.png',
+    title: 'Pelatihan Keterampilan Khusus',
+    description: 'Pelatihan dalam teknik-teknik khusus seperti tata cara membersihkan kamar hotel, area publik, atau fasilitas lainnya.',
   },
 ]
 
@@ -98,7 +88,13 @@ definePageMeta({
       <div class="lg:w-[55%]">
         <div
           class="relative aspect-video w-full bg-orange-500 before:absolute before:-z-10 before:h-full before:w-full before:-translate-x-8 before:-translate-y-7 before:bg-slate-400 before:content-['']"
-        />
+        >
+          <img
+            src="/img/fadsfadsfadfagagd.png"
+            alt=""
+            class="w-full object-cover h-full"
+          >
+        </div>
       </div>
       <div class="space-y-4 lg:w-[45%]">
         <h3 class="text-3xl text-cobalt-900 lg:text-5xl">

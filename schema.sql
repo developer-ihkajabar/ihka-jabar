@@ -52,4 +52,4 @@ INSERT INTO "cabang" ("name") VALUES
 
 INSERT INTO "superadmin" ("username", "password") VALUES
 ('superadmin', 'superadmin'),
-('superadmin2', 'superadmin');
+('superadmin2', 'superadmin2');

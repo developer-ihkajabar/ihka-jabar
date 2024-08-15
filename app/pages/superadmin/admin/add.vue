@@ -100,7 +100,7 @@ definePageMeta({
               :value="false"
               placeholder=""
             >
-            <span>Admin Cabang</span>
+            <span>BPC</span>
           </label>
           <label class="flex items-center gap-1">
             <input
@@ -111,7 +111,7 @@ definePageMeta({
               placeholder=""
               @select="formAddAdmin.cabangId = undefined"
             >
-            <span>Admin Daerah</span>
+            <span>BPD</span>
           </label>
         </div>
       </div>
@@ -119,7 +119,7 @@ definePageMeta({
         v-if="!formAddAdmin.isAdminDaerah"
         class="flex flex-col gap-1"
       >
-        <span class="font-semibold">Cabang</span>
+        <span class="font-semibold">Wilayah</span>
         <select
           v-model="formAddAdmin.cabangId"
           class="border px-3 py-1 rounded-md"
