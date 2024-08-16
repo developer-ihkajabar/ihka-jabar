@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { cabangList } = storeToRefs(useCabangStore())
+
+const cabangList2 = computed(() => cabangList.value?.sort((a, b) => a.id - b.id))
 </script>
 
 <template>
@@ -42,7 +44,7 @@ const { cabangList } = storeToRefs(useCabangStore())
           class="absolute left-[30%] top-[85%] z-20 hidden translate-x-[-50%] flex-col gap-0.5 rounded-md bg-sky-100 px-2 py-2 *:text-nowrap group-hover:flex"
         >
           <NuxtLink
-            v-for="cabang in cabangList"
+            v-for="cabang in cabangList2"
             :key="cabang.id"
             :to="{ name: 'BeritaCabang', params: { id: cabang.id } }"
             class="rounded-md pl-4 pr-10 hover:bg-sky-200 cursor-pointer"
