@@ -33,7 +33,7 @@ definePageMeta({
             <div className="relative aspect-[4/3] w-full bg-orange-500 before:absolute before:-z-10 before:h-full before:w-full before:-translate-x-10 before:-translate-y-9 before:bg-slate-400 before:content-['']">
               <img
                 className="object-cover w-full h-full"
-                :src="programItem.image"
+                :src="programItem.imgSrc"
                 :alt="programItem.title"
               >
             </div>
@@ -41,7 +41,7 @@ definePageMeta({
               {{ programItem.title }}
             </h2>
             <p className="text-2xl font-thin">
-              {{ programItem.description }}
+              {{ programItem.shortDescription }}
             </p>
           </div>
         </template>
@@ -59,7 +59,7 @@ definePageMeta({
             <div className="relative aspect-[4/3] w-full bg-orange-500 before:absolute before:-z-10 before:h-full before:w-full before:-translate-y-9 before:translate-x-10 before:bg-slate-400 before:content-['']">
               <img
                 className="object-cover w-full h-full"
-                :src="programItem.image"
+                :src="programItem.imgSrc"
                 :alt="programItem.title"
               >
             </div>
@@ -67,7 +67,7 @@ definePageMeta({
               {{ programItem.title }}
             </h2>
             <p className="text-2xl font-thin">
-              {{ programItem.description }}
+              {{ programItem.shortDescription }}
             </p>
           </div>
         </template>
