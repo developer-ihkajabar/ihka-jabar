@@ -19,7 +19,7 @@ function toggleAdminMenu() {
   openMenu.value = !openMenu.value
 }
 
-const onClickOutsideHandler: [(ev: any) => void, OnClickOutsideOptions] = [
+const onClickOutsideHandler: [(ev: unknown) => void, OnClickOutsideOptions] = [
   () => {
     openMenu.value = false
   },

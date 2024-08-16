@@ -5,17 +5,17 @@ const _3beritaList = computed(() => beritaList.value.slice(0, 3))
 
 const items = [
   {
-    imageSrc: '/img/fakldsjfhlakdfjadsf.png',
+    imageSrc: '/img/program1.png',
     title: 'Pelatihan HouseKeeping',
     description: 'Pelatihan untuk menciptakan HouseKeeper yang profesional, handal dan efisien.',
   },
   {
-    imageSrc: '/img/program1.png',
+    imageSrc: '/img/program2.png',
     title: 'Pelatihan Manajerial',
     description: 'Pelatihan manajemen waktu dan manajemen sumber daya untuk meningkatkan produktivitas.',
   },
   {
-    imageSrc: '/img/program2.png',
+    imageSrc: '/img/program3.png',
     title: 'Pelatihan Keterampilan Khusus',
     description: 'Pelatihan dalam teknik-teknik khusus seperti tata cara membersihkan kamar hotel, area publik, atau fasilitas lainnya.',
   },
