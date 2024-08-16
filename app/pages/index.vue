@@ -105,10 +105,13 @@ definePageMeta({
           Kami berkomitmen untuk terus mengembangkan dan menjaga standar
           kualitas kebersihan, perawatan, dan keindahan tata ruang hotel.
         </p>
-        <button class="flex items-center gap-2 text-base font-bold text-cobalt-900 lg:text-lg">
+        <NuxtLink
+          to="/about"
+          class="flex items-center gap-2 text-base font-bold text-cobalt-900 lg:text-lg"
+        >
           Selengkapnya
           <Icon name="solar:arrow-right-line-duotone" />
-        </button>
+        </NuxtLink>
       </div>
     </div>
     <div class="space-y-5 lg:space-y-10 bg-cobalt-900 px-4 py-16 text-white lg:px-10">
@@ -197,7 +200,7 @@ definePageMeta({
     </div>
     <div class="space-y-10 px-4 lg:px-10 py-12">
       <div class="flex items-center gap-8">
-        <span class="text-nowrap text-2xl lg:text-3xl">Berita Terkini</span>
+        <span class="text-nowrap text-2xl lg:text-3xl text-cobalt-900">Berita Terkini</span>
         <span class="h-0.5 w-full bg-blue-800" />
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-3 px-4 lg:px-0 gap-14 lg:gap-4">

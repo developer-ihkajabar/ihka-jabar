@@ -51,7 +51,7 @@ onMounted(() => {
       </div>
       <NuxtLink
         :to="`/berita/${news.id}`"
-        class="text-sm"
+        class="text-sm text-cobalt-900"
       >
         Selengkapnya <span><Icon name="solar:arrow-right-outline" /></span>
       </NuxtLink>

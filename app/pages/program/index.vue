@@ -9,7 +9,7 @@ definePageMeta({
 <template>
   <main>
     <div className="w-full space-y-6 px-4 py-10 lg:w-8/12 lg:px-10 lg:py-20">
-      <h1 className="text-5xl lg:text-6xl">
+      <h1 className="text-5xl lg:text-6xl text-cobalt-900">
         Program Unggulan
       </h1>
       <p className="text-justify text-2xl font-light lg:text-start lg:text-3xl lg:font-thin">
@@ -37,7 +37,7 @@ definePageMeta({
                 :alt="programItem.title"
               >
             </div>
-            <h2 className="text-4xl">
+            <h2 className="text-4xl text-cobalt-900">
               {{ programItem.title }}
             </h2>
             <p className="text-2xl font-thin">
@@ -63,7 +63,7 @@ definePageMeta({
                 :alt="programItem.title"
               >
             </div>
-            <h2 className="text-4xl">
+            <h2 className="text-4xl text-cobalt-900">
               {{ programItem.title }}
             </h2>
             <p className="text-2xl font-thin">

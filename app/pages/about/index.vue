@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import strukturAsosiasi from '~/data/strukturAsosiasi'
+
 definePageMeta({
   name: 'About',
 })
@@ -10,7 +12,7 @@ definePageMeta({
       class="flex h-[calc(100vh-6rem)] flex-col-reverse items-center justify-end gap-8 px-4 py-6 lg:flex-row lg:justify-normal lg:gap-4 lg:px-10 lg:py-0"
     >
       <div class="w-full pb-0 lg:w-8/12 lg:pb-[8%]">
-        <h1 class="mx-auto w-fit text-5xl lg:mx-0 lg:w-full lg:text-7xl">
+        <h1 class="mx-auto w-fit text-5xl lg:mx-0 lg:w-full lg:text-7xl text-cobalt-900">
           IHKA BPD Jawa Barat
         </h1>
         <p class="mt-2 text-pretty text-justify text-xl font-normal lg:text-start lg:text-3xl lg:font-thin">
@@ -32,7 +34,7 @@ definePageMeta({
     <div class="px-4 lg:px-10">
       <div class="">
         <div class="flex flex-col-reverse items-center gap-6 lg:gap-16 lg:flex-row">
-          <h2 class="text-4xl lg:text-7xl">
+          <h2 class="text-4xl lg:text-7xl text-cobalt-900">
             Keinginan IHKA
           </h2>
           <div class="w-full px-4 lg:px-16">
@@ -56,7 +58,7 @@ definePageMeta({
           class="space-y-5"
           data-aos="fade-right"
         >
-          <h3 class="text-3xl lg:text-5xl">
+          <h3 class="text-3xl lg:text-5xl text-cobalt-900">
             Visi
           </h3>
           <p class="text-justify text-lg lg:text-start lg:text-xl">
@@ -70,7 +72,7 @@ definePageMeta({
           class="space-y-5"
           data-aos="fade-left"
         >
-          <h3 class="text-3xl lg:text-5xl">
+          <h3 class="text-3xl lg:text-5xl text-cobalt-900">
             Misi
           </h3>
           <ol class="list-outside pl-4 lg:pl-0 list-decimal space-y-3 text-justify text-lg lg:text-start lg:text-xl">
@@ -94,11 +96,11 @@ definePageMeta({
       </div>
     </div>
     <div class="py-16 px-4 lg:px-10">
-      <h2 class="text-4xl lg:text-5xl">
+      <h2 class="text-4xl lg:text-5xl text-cobalt-900">
         Struktur Asosiasi
       </h2>
       <div class="mt-5">
-        <h3 class="text-2xl font-semibold">
+        <h3 class="text-2xl font-semibold text-cobalt-900">
           BPD IHKA Jawa Barat
         </h3>
         <p class="text-xl">
@@ -110,24 +112,24 @@ definePageMeta({
           class="col-span-1 lg:col-span-3 flex flex-col items-center gap-2"
           data-aos="fade-up"
         >
-          <h4 class="text-3xl font-semibold">
-            Prayogi Rachmat
+          <h4 class="text-3xl font-semibold text-cobalt-900">
+            {{ strukturAsosiasi[0]?.nama }}
           </h4>
-          <p class="text-2xl">
-            Ketua
+          <p class="text-2xl text-center">
+            {{ strukturAsosiasi[0]?.jabatan }}
           </p>
         </div>
         <div
-          v-for="i in 6"
-          :key="i"
+          v-for="item in strukturAsosiasi.slice(1)"
+          :key="item.id"
           class="flex flex-col items-center gap-2 py-6"
           data-aos="fade-up"
         >
-          <h4 class="text-2xl font-semibold">
-            Prayogi Rachmat
+          <h4 class="text-2xl font-semibold text-cobalt-900">
+            {{ item.nama }}
           </h4>
-          <p class="text-xl">
-            Ketua
+          <p class="text-xl text-center">
+            {{ item.jabatan }}
           </p>
         </div>
       </div>
