@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { beritaList } = storeToRefs(useBeritaStore())
 
-const _3beritaList = computed(() => beritaList.value.slice(0, 3))
+const _3beritaList = computed(() => beritaList.value.slice(0, 3).filter(b => b.is_published === 1))
 
 const items = [
   {
@@ -201,11 +201,18 @@ definePageMeta({
         <span class="h-0.5 w-full bg-blue-800" />
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-3 px-4 lg:px-0 gap-14 lg:gap-4">
-        <UserBeritaCard
-          v-for="berita in _3beritaList"
-          :key="berita.id"
-          :news="berita"
-        />
+        <template v-if="_3beritaList.length > 0">
+          <UserBeritaCard
+            v-for="berita in _3beritaList"
+            :key="berita.id"
+            :news="berita"
+          />
+        </template>
+        <template v-else>
+          <p class="text-lg font-semibold">
+            Belum ada berita
+          </p>
+        </template>
       </div>
     </div>
   </main>

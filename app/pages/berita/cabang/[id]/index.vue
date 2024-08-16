@@ -16,7 +16,7 @@ const beritaCabangList = ref<Berita[]>()
 const cabang = ref<Cabang>()
 
 const getBeritaCabangList = async () => {
-  beritaCabangList.value = getBpcNewsById(id)
+  beritaCabangList.value = getBpcNewsById(id).filter(b => b.is_published === 1)
 }
 
 const getCabang = async () => {

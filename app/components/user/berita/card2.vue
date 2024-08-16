@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Berita } from '~~/types/Berita'
+import { formatDate } from '#imports'
 
 const { berita: { id: beritaId } } = defineProps<{
   berita: Berita
@@ -42,7 +43,7 @@ onMounted(() => {
         {{ berita.title }}
       </h3>
       <span class="font-semibold lg:font-normal">
-        {{ formatDate(berita.created_at) }}
+        {{ formatDate(berita.created_at! as unknown as string) }}
       </span>
       <div
         class="contentHtml"

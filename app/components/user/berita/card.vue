@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import type { Berita } from '~~/types/Berita'
 
-const { news: { id: beritaId, cabang_id, title } } = defineProps<{
+const { news } = defineProps<{
   news: Berita
 }>()
 
 const { getCabangById } = useCabangStore()
 
 const imgSrc = ref<string>()
-const cabang = cabang_id ? getCabangById(cabang_id) : null
+const cabang = news.cabang_id ? getCabangById(news.cabang_id) : null
 
 async function getImgSrc() {
-  const data = await $fetch<string>(`/api/berita/images/${beritaId}`, {
+  const data = await $fetch<string>(`/api/berita/images/${news.id}`, {
     method: 'GET',
     onResponseError: (error) => {
       console.error(error)
@@ -21,6 +21,8 @@ async function getImgSrc() {
 
   imgSrc.value = data
 }
+
+console.log(news)
 
 onMounted(() => {
   getImgSrc()
@@ -40,16 +42,19 @@ onMounted(() => {
         <p class="text-xs">
           17 April 2024
         </p>
-        <h3 class="text-base font-semibold">
-          {{ title }}
+        <h3 class="font-semibold text-xl">
+          {{ news.title }}
         </h3>
         <p class="text-xs">
-          {{ cabang?.name ? cabang.name : 'IHKA Jawa Barat' }}
+          {{ cabang?.name ?? 'IHKA Jawa Barat' }}
         </p>
       </div>
-      <button class="text-sm">
+      <NuxtLink
+        :to="`/berita/${news.id}`"
+        class="text-sm"
+      >
         Selengkapnya <span><Icon name="solar:arrow-right-outline" /></span>
-      </button>
+      </NuxtLink>
     </div>
   </div>
 </template>
