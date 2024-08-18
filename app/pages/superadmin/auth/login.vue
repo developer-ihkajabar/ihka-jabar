@@ -7,8 +7,8 @@ definePageMeta({
 const { login } = useAuthSuperadminStore()
 
 const loginForm = reactive({
-  username: 'superadmin',
-  password: 'superadmin',
+  username: '',
+  password: '',
 })
 const showPassword = ref(false)
 

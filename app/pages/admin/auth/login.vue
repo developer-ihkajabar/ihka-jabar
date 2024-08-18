@@ -2,8 +2,8 @@
 const { login } = useAuthAdminStore()
 
 const loginForm = reactive({
-  email: 'dozapi@mailinator.com',
-  password: 'Pa$$w0rd!',
+  email: '',
+  password: '',
 })
 const showPassword = ref(true)
 
