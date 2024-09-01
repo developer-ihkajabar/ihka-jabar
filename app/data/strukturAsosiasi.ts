@@ -1,7 +1,7 @@
 const strukturAsosiasi = [
   {
     id: 1,
-    nama: 'Asep',
+    nama: 'Prayogi Rachmat',
     jabatan: 'Ketua',
   },
   {
