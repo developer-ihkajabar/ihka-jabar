@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
 import type { Admin, FormDataAddAdmin } from '@@/types/Admin.js'
+import { defineStore } from 'pinia'
 
 export const useAdminStore = defineStore('Admin', () => {
   const adminList = ref<Admin[]>()

@@ -1,6 +1,6 @@
-import { D1Database } from "@cloudflare/workers-types";
-import { drizzle } from 'drizzle-orm/d1';
-import * as schema from "@@/server/db/schema"
+import type { D1Database } from '@cloudflare/workers-types'
+import * as schema from '@@/server/db/schema'
+import { drizzle } from 'drizzle-orm/d1'
 
 export function getDb(event: any) {
   const d1Db = event.context.cloudflare.env.DB as D1Database

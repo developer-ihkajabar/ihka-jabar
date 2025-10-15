@@ -1,5 +1,6 @@
+import type { NewsInsert } from '~~/server/db/schema'
 import { validateJWT } from 'oslo/jwt'
-import { NewsInsert, newsTable } from '~~/server/db/schema'
+import { newsTable } from '~~/server/db/schema'
 
 export default defineEventHandler(async (event) => {
   const token = event.node.req.headers.authorization?.split(' ')[1]
@@ -24,7 +25,7 @@ export default defineEventHandler(async (event) => {
 
   const adminId = ((await validateJWT('HS256', jwtSecret, token)).payload as { id: string }).id
   const admin = await db.query.adminTable.findFirst({
-    where: (adminTable, { eq }) => eq(adminTable.id, Number.parseInt(adminId))
+    where: (adminTable, { eq }) => eq(adminTable.id, Number.parseInt(adminId)),
   })
 
   if (!admin) {
@@ -38,7 +39,7 @@ export default defineEventHandler(async (event) => {
     title,
     contentHtml: content,
     adminId: Number.parseInt(adminId),
-    ...(cabangId ? {cabangId} : {})
+    ...(cabangId ? { cabangId } : {}),
   }
 
   const [createdNews] = await db.insert(newsTable).values(newsData).returning()

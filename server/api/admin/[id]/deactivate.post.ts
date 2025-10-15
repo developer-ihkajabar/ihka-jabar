@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm"
-import z from "zod"
-import { adminTable } from "~~/server/db/schema"
+import { eq } from 'drizzle-orm'
+import z from 'zod'
+import { adminTable } from '~~/server/db/schema'
 
 export default defineEventHandler(async (event) => {
   const db = getDb(event)

@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
 import type { Cabang } from '@@/types/Cabang'
+import { defineStore } from 'pinia'
 
 export const useCabangStore = defineStore('Cabang', () => {
   const cabangList = ref<Cabang[]>()

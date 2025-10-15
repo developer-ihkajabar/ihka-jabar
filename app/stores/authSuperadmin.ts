@@ -1,6 +1,6 @@
+import type { AuthSuperadmin } from '@@/types/AuthSuperadmin'
 // import { useLocalStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import type { AuthSuperadmin } from '@@/types/AuthSuperadmin'
 
 export const useAuthSuperadminStore = defineStore('AuthSuperadmin', () => {
   const toast = useToast()

@@ -1,8 +1,10 @@
+import { eq } from 'drizzle-orm'
 import { TimeSpan } from 'oslo'
 import { createJWT } from 'oslo/jwt' // https://oslo.js.org/reference/jwt/createJWT
+import { adminTable } from '~~/server/db/schema'
 
 export default defineEventHandler(async (event) => {
-  const db = event.context.cloudflare.env.DB
+  const db = getDb(event)
 
   const {
     email,
@@ -12,7 +14,7 @@ export default defineEventHandler(async (event) => {
     password: string
   } = await readBody(event)
 
-  const admin = await db.prepare('select * from admin where email = ?').bind(email).first()
+  const admin = await db.query.adminTable.findFirst({ where: eq(adminTable.email, email) })
 
   if (!admin) {
     setResponseStatus(event, 401)

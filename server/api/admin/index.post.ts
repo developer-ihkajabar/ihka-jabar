@@ -1,5 +1,6 @@
+import type { AdminInsert } from '~~/server/db/schema'
 import { z } from 'zod'
-import { AdminInsert, adminTable } from '~~/server/db/schema'
+import { adminTable } from '~~/server/db/schema'
 
 const CreateAdminRequestSchema = z.object({
   email: z.email(),
@@ -25,7 +26,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const checkAdmin = await db.query.adminTable.findFirst({
-    where: (adminTable, { eq }) => eq(adminTable.email, email)
+    where: (adminTable, { eq }) => eq(adminTable.email, email),
   })
   if (checkAdmin?.email === email) {
     setResponseStatus(event, 400, 'Email sudah terdaftar')

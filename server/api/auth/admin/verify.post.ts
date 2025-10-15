@@ -1,19 +1,15 @@
+import { eq } from 'drizzle-orm'
 import { validateJWT } from 'oslo/jwt'
+import { adminTable } from '~~/server/db/schema'
 
 export default defineEventHandler(async (event) => {
   const token = event.node.req.headers.authorization?.split(' ')[1]
-  const db = event.context.cloudflare.env.DB
+  const db = getDb(event)
   if (!token)
     return
 
-  try {
-    const jwt = await validateJWT('HS256', jwtSecret, token)
-    const id = (jwt.payload as { id: string }).id
-    const admin = await db.prepare('select * from admin where id = ?').bind(id).first()
-    return admin
-  }
-  catch (error) {
-    setResponseStatus(event, 401)
-    return 'Invalid token'
-  }
+  const jwt = await validateJWT('HS256', jwtSecret, token)
+  const id = (jwt.payload as { id: string }).id
+  const admin = await db.query.adminTable.findFirst({ where: eq(adminTable.id, Number.parseInt(id)) })
+  return admin
 })

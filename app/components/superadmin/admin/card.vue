@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { vOnClickOutside } from '@vueuse/components'
-import type { OnClickOutsideOptions } from '@vueuse/core'
 import type { Admin } from '@@/types/Admin'
+import type { OnClickOutsideOptions } from '@vueuse/core'
+import { vOnClickOutside } from '@vueuse/components'
 
 // Props ========================================================================
 const props = defineProps<{ admin: Admin }>()

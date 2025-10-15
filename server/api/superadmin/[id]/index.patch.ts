@@ -1,10 +1,10 @@
-
-import { eq } from "drizzle-orm"
-import z from "zod"
-import { SuperadminInsert, superadminTable } from "~~/server/db/schema"
+import type { SuperadminInsert } from '~~/server/db/schema'
+import { eq } from 'drizzle-orm'
+import z from 'zod'
+import { superadminTable } from '~~/server/db/schema'
 
 const SuperadminUpdateParamSchema = z.object({
-  id: z.string().regex(/^[0-9]+$/).transform(Number)
+  id: z.string().regex(/^\d+$/).transform(Number),
 })
 
 const SuperadminUpdateSchema = z.object({

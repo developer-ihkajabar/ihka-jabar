@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 import { useBeritaStore } from '@/stores/berita'
 
 const router = useRouter()

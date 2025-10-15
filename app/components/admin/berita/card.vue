@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { vOnClickOutside } from '@vueuse/components'
-import type { OnClickOutsideOptions } from '@vueuse/core'
 import type { Berita } from '@@/types/Berita'
+import type { OnClickOutsideOptions } from '@vueuse/core'
+import { vOnClickOutside } from '@vueuse/components'
 import { useBeritaStore } from '@/stores/berita'
 
 // Props ========================================================================

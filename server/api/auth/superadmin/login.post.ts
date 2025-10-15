@@ -1,8 +1,10 @@
+import { eq } from 'drizzle-orm'
 import { TimeSpan } from 'oslo'
 import { createJWT } from 'oslo/jwt' // https://oslo.js.org/reference/jwt/createJWT
+import { superadminTable } from '~~/server/db/schema'
 
 export default defineEventHandler(async (event) => {
-  const db = event.context.cloudflare.env.DB
+  const db = getDb(event)
 
   const {
     username,
@@ -12,7 +14,7 @@ export default defineEventHandler(async (event) => {
     password: string
   } = await readBody(event)
 
-  const superadmin = await db.prepare('select * from superadmin where username = ?').bind(username).first()
+  const superadmin = await db.query.superadminTable.findFirst({ where: eq(superadminTable.username, username) })
 
   if (!superadmin) {
     setResponseStatus(event, 401)

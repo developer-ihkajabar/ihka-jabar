@@ -1,5 +1,9 @@
 {
-  "files": [],
+  "compilerOptions": {
+    "types": [
+      "env.d.ts"
+    ]
+  },
   "references": [
     {
       "path": "./.nuxt/tsconfig.app.json"
@@ -14,9 +18,5 @@
       "path": "./.nuxt/tsconfig.node.json"
     }
   ],
-  "compilerOptions": {
-    "types": [
-      "env.d.ts"
-    ]
-  }
+  "files": []
 }

@@ -4,7 +4,7 @@ import z from 'zod'
 import { newsTable } from '~~/server/db/schema'
 
 const DetailNewsRequestParamSchema = z.object({
-  beritaId: z.string().regex(/^[0-9]+$/).transform(Number)
+  beritaId: z.string().regex(/^\d+$/).transform(Number),
 })
 
 export default defineEventHandler(async (event) => {
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
   const adminId = ((await validateJWT('HS256', jwtSecret, token)).payload as { id: string }).id
   const admin = await db.query.adminTable.findFirst({
-    where: (adminTable, { eq }) => eq(adminTable.id, Number.parseInt(adminId))
+    where: (adminTable, { eq }) => eq(adminTable.id, Number.parseInt(adminId)),
   })
   const isModerator = admin!.isModerator === true
 
@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const news = await db.query.newsTable.findFirst({
-    where: (newsTable, { eq }) => eq(newsTable.id, beritaId)
+    where: (newsTable, { eq }) => eq(newsTable.id, beritaId),
   })
 
   if (news!.adminId === Number.parseInt(adminId)) {

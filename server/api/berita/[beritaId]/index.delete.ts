@@ -1,10 +1,9 @@
 import { eq } from 'drizzle-orm'
-import { validateJWT } from 'oslo/jwt'
 import z from 'zod'
 import { newsTable } from '~~/server/db/schema'
 
 const DetailNewsRequestParamSchema = z.object({
-  beritaId: z.string().regex(/^[0-9]+$/).transform(Number)
+  beritaId: z.string().regex(/^\d+$/).transform(Number),
 })
 
 export default defineEventHandler(async (event) => {
