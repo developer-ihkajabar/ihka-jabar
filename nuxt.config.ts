@@ -1,3 +1,5 @@
+import tailwindcss from '@tailwindcss/vite'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-07-30',
@@ -15,6 +17,12 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'cloudflare-pages',
+  },
+
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ],
   },
 
   // Env variables - https://nuxt.com/docs/getting-started/configuration#environment-variables-and-private-tokens
