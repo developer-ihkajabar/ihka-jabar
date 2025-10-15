@@ -1,5 +1,5 @@
 import { TimeSpan } from 'oslo'
-import { createJWT, JWTAlgorithm } from 'oslo/jwt' // https://oslo.js.org/reference/jwt/createJWT
+import { createJWT } from 'oslo/jwt' // https://oslo.js.org/reference/jwt/createJWT
 
 export default defineEventHandler(async (event) => {
   const db = event.context.cloudflare.env.DB

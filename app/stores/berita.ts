@@ -19,7 +19,6 @@ export const useBeritaStore = defineStore('news', () => {
           title: 'Gagal mengambil berita',
           description: error.response._data,
         })
-        return
       },
     })
 
@@ -61,7 +60,6 @@ export const useBeritaStore = defineStore('news', () => {
           color: 'rose',
           description: error.response._data,
         })
-        return
       },
     })
 
@@ -82,7 +80,6 @@ export const useBeritaStore = defineStore('news', () => {
           color: 'rose',
           description: error.response._data,
         })
-        return
       },
     })
 
@@ -107,7 +104,6 @@ export const useBeritaStore = defineStore('news', () => {
           title: 'Gagal menolak berita',
           description: error.response._data,
         })
-        return
       },
     })
   }
@@ -123,7 +119,6 @@ export const useBeritaStore = defineStore('news', () => {
           title: 'Gagal menghapus berita',
           description: error.response._data,
         })
-        return
       },
     })
 

@@ -18,19 +18,18 @@ export const useAuthAdminStore = defineStore('AuthAdmin', () => {
           icon: 'solar:user-block-bold-duotone',
           description: error.response._data,
         })
-        return
       },
     })
     localStorage.setItem('admin_token', data.token)
     user.value = data.admin
     toast.add({
       title: 'Login Berhasil',
-      description: 'Selamat datang, ' + data.admin.name,
+      description: `Selamat datang, ${data.admin.name}`,
     })
     router.replace({ name: 'Berita' })
   }
   const editProfile = async (formData: { email?: string, name?: string, no_telp?: string, password?: string }) => {
-    await $fetch<{ admin: Admin }>('/api/admin/' + user.value!.id, {
+    await $fetch<{ admin: Admin }>(`/api/admin/${user.value!.id}`, {
       method: 'PATCH',
       body: formData,
       onResponseError: (error) => {
@@ -74,7 +73,6 @@ export const useAuthAdminStore = defineStore('AuthAdmin', () => {
           description: error.response._data,
         })
         localStorage.removeItem('admin_token')
-        return
       },
     })
     user.value = data

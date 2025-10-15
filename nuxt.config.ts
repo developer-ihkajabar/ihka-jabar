@@ -3,10 +3,9 @@ import tailwindcss from '@tailwindcss/vite'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-07-30',
-  future: { compatibilityVersion: 4 },
   modules: ['nitro-cloudflare-dev', '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/eslint', '@nuxt/ui', '@nuxt/image'],
 
-  devtools: { enabled: true },
+  css: ['@/assets/main.css'],
 
   app: {
     head: {
@@ -25,17 +24,10 @@ export default defineNuxtConfig({
     ],
   },
 
-  colorMode: {
-    preference: 'light',
-  },
-
   // https://eslint.nuxt.com
   eslint: {
-    checker: true,
     config: {
-      stylistic: {
-        quotes: 'single',
-      },
+      standalone: false,
       autoInit: true,
     },
   },

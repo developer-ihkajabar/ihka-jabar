@@ -2,14 +2,14 @@
 import type { Berita } from '~~/types/Berita'
 import { formatDate } from '#imports'
 
-const { berita: { id: beritaId } } = defineProps<{
+const { berita } = defineProps<{
   berita: Berita
 }>()
 
 const imgSrc = ref<string>('')
 
 async function getImgSrc() {
-  const data = await $fetch<string>(`/api/berita/images/${beritaId}`, {
+  const data = await $fetch<string>(`/api/berita/images/${berita.id}`, {
     method: 'GET',
     onResponseError: (error) => {
       console.error(error)
