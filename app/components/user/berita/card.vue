@@ -4,8 +4,7 @@ const { news } = defineProps<{
 }>()
 
 const imgSrc = ref<string>()
-// const cabang = news.cabang_id ? getCabangById(news.cabang_id) : null
-// const {} = await useFetch('')
+const { data: region } = await useFetch(`/api/regions/${news.cabangId}`)
 
 async function getImgSrc() {
   const data = await $fetch<string>(`/api/berita/images/${news.id}`, {
@@ -33,14 +32,14 @@ onMounted(() => {
     </div>
     <div class="space-y-3">
       <div class="">
-        <p class="text-xs">
-          17 April 2024
+        <p v-if="news.createdAt" class="text-xs">
+          {{ new Date(news.createdAt).toLocaleDateString('id-ID') }}
         </p>
         <h3 class="font-semibold text-xl">
           {{ news.title }}
         </h3>
-        <p class="text-xs">
-          <!-- {{ cabang?.name ?? 'IHKA Jawa Barat' }} -->
+        <p v-if="region" class="text-xs">
+          {{ region.name }}
         </p>
       </div>
       <NuxtLink

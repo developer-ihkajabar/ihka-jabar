@@ -1,0 +1,1 @@
+ALTER TABLE `news` ADD `image_url` text;

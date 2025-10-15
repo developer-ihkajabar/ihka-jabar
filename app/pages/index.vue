@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data: newss } = await useFetch('/api/berita', {
+const { data: newss } = await useFetch('/api/news', {
   query: {
     limit: 3,
   },
@@ -23,34 +23,18 @@ const items = [
   },
 ]
 
-const carouselRef = ref()
+const carouselRef = useTemplateRef('carouselRef')
 
-function handleNextCarousel() {
-  if (carouselRef.value.page === carouselRef.value.pages) {
-    return carouselRef.value.select(0)
-  }
-  carouselRef.value.next()
+function onClickPrev() {
+  if (!carouselRef.value)
+    return
+  carouselRef.value.emblaApi?.scrollPrev()
 }
-
-function handlePrevCarousel() {
-  if (carouselRef.value.page === 1) {
-    return carouselRef.value.select(carouselRef.value.pages)
-  }
-  carouselRef.value.prev()
+function onClickNext() {
+  if (!carouselRef.value)
+    return
+  carouselRef.value.emblaApi?.scrollNext()
 }
-
-onMounted(() => {
-  setInterval(() => {
-    if (!carouselRef.value)
-      return
-
-    if (carouselRef.value.page === carouselRef.value.pages) {
-      return carouselRef.value.select(0)
-    }
-
-    carouselRef.value.next()
-  }, 5000)
-})
 
 definePageMeta({
   name: 'Beranda',
@@ -125,7 +109,7 @@ definePageMeta({
       <div class="flex items-center lg:hidden gap-2 justify-end">
         <button
           class="size-8 -translate-y-1/2 rounded-full bg-white"
-          @click="handlePrevCarousel"
+          @click="onClickPrev"
         >
           <Icon
             name="solar:alt-arrow-left-bold"
@@ -134,7 +118,7 @@ definePageMeta({
         </button>
         <button
           class="size-8 -translate-y-1/2 rounded-full bg-white"
-          @click="handleNextCarousel"
+          @click="onClickNext"
         >
           <Icon
             name="solar:alt-arrow-right-bold"
@@ -151,6 +135,10 @@ definePageMeta({
             item: 'basis-full',
             container: 'rounded-lg',
           }"
+          autoplay
+          loop
+          :prev="{ onClick: onClickPrev }"
+          :next="{ onClick: onClickNext }"
           class="w-full mx-auto"
         >
           <div
@@ -182,7 +170,7 @@ definePageMeta({
         <div class="hidden lg:block">
           <button
             class="absolute left-4 top-1/2 size-12 -translate-y-1/2 p-2 rounded-full bg-cobalt-900"
-            @click="handlePrevCarousel"
+            @click="onClickPrev"
           >
             <Icon
               name="solar:alt-arrow-left-bold"
@@ -191,7 +179,7 @@ definePageMeta({
           </button>
           <button
             class="absolute right-4 top-1/2 size-12 -translate-y-1/2 p-2 rounded-full bg-cobalt-900"
-            @click="handleNextCarousel"
+            @click="onClickNext"
           >
             <Icon
               name="solar:alt-arrow-right-bold"

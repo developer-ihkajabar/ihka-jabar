@@ -25,6 +25,7 @@ export const newsTable = sqliteTable('news', {
   title: text('title').unique().notNull(),
   contentHtml: text('content_html').notNull(),
   isPublished: integer('is_published', { mode: 'boolean' }).notNull().default(false),
+  imageUrl: text('image_url'),
   adminId: integer('admin_id').references(() => adminTable.id),
   cabangId: integer('cabang_id').references(() => cabangTable.id),
   approvedBy: integer('approved_by').references(() => adminTable.id),
