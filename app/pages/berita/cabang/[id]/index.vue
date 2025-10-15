@@ -15,11 +15,11 @@ definePageMeta({
 const beritaCabangList = ref<Berita[]>()
 const cabang = ref<Cabang>()
 
-const getBeritaCabangList = async () => {
+async function getBeritaCabangList() {
   beritaCabangList.value = getBpcNewsById(id).filter(b => b.is_published === 1)
 }
 
-const getCabang = async () => {
+async function getCabang() {
   cabang.value = getCabangById(id)
   console.log(cabang.value)
 }

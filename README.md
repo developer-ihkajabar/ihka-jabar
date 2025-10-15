@@ -16,6 +16,6 @@ Website: [Ihka Jabar](https://ihka-jabar.pages.dev/)
 - Nuxt - Fullstack
   - Vue - Frontend
   - Nitro - Backend
-- Cloudflare D1 - Headless Database 
+- Cloudflare D1 - Headless Database
 - Cloudflare KV - KV Storage
 - Cloudflare pages - Platform for deploying

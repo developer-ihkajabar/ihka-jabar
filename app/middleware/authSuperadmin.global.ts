@@ -1,5 +1,6 @@
 export default defineNuxtRouteMiddleware(async (to) => {
-  if (import.meta.server) return
+  if (import.meta.server)
+    return
   const token = localStorage.getItem('superadmin_token')
 
   const { authSuperadmin } = storeToRefs(useAuthSuperadminStore())

@@ -1,4 +1,4 @@
-type Program = {
+interface Program {
   id: number
   title: string
   shortDescription: string

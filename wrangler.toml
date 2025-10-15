@@ -1,4 +1,4 @@
-#:schema node_modules/wrangler/config-schema.json
+# :schema node_modules/wrangler/config-schema.json
 name = "ihka-jabar"
 compatibility_date = "2024-07-29"
 pages_build_output_dir = "./dist"
@@ -66,7 +66,7 @@ id = "551e65c3dfed4cdea80d2c44c6c6d03e"
 # When using environment-specific overrides for bindings, ALL bindings must be specified on a per-environment basis.
 # Docs: https://developers.cloudflare.com/pages/functions/wrangler-configuration#environment-specific-overrides
 
-######## PREVIEW environment config ########
+# ####### PREVIEW environment config ########
 
 # [env.preview.vars]
 # API_KEY = "xyz789"
@@ -75,7 +75,7 @@ id = "551e65c3dfed4cdea80d2c44c6c6d03e"
 # binding = "MY_KV_NAMESPACE"
 # id = "<PREVIEW_NAMESPACE_ID>"
 
-######## PRODUCTION environment config ########
+# ####### PRODUCTION environment config ########
 
 # [env.production.vars]
 # API_KEY = "abc123"

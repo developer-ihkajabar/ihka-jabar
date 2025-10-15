@@ -30,7 +30,8 @@ async function saveEmail() {
   isEditEmail.value = false
 }
 async function saveNoTelp() {
-  if (!inputNoTelp.value) return
+  if (!inputNoTelp.value)
+    return
   if (!isValidPhoneNumber(inputNoTelp.value)) {
     toast.add({
       title: 'No Telp/Whatsapp tidak valid',

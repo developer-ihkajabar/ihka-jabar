@@ -55,7 +55,7 @@ const cabangList2 = computed(() => cabangList.value?.sort((a, b) => a.id - b.id)
       </div>
       <NuxtLink
         :to="{ name: 'AdminLogin' }"
-        class="!h-fit rounded-full bg-cobalt-900 text-white px-6 py-1"
+        class="h-fit! rounded-full bg-cobalt-900 text-white px-6 py-1"
       >
         Sign In
       </NuxtLink>

@@ -44,7 +44,8 @@ export const useAuthSuperadminStore = defineStore('AuthSuperadmin', () => {
         Authorization: `Bearer ${token}`,
       },
       onResponseError: (error) => {
-        if (import.meta.server) return
+        if (import.meta.server)
+          return
         localStorage.removeItem('superadmin_token')
         toast.add({
           title: 'Token Expired',

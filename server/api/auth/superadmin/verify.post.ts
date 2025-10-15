@@ -5,7 +5,8 @@ export default defineEventHandler(async (event) => {
   const token = event.node.req.headers.authorization?.split(' ')[1]
   const db = event.context.cloudflare.env.DB
 
-  if (!token) return
+  if (!token)
+    return
 
   try {
     const jwt = await validateJWT('HS256', jwtSecret, token)

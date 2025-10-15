@@ -23,14 +23,14 @@ const items = [
 
 const carouselRef = ref()
 
-const handleNextCarousel = () => {
+function handleNextCarousel() {
   if (carouselRef.value.page === carouselRef.value.pages) {
     return carouselRef.value.select(0)
   }
   carouselRef.value.next()
 }
 
-const handlePrevCarousel = () => {
+function handlePrevCarousel() {
   if (carouselRef.value.page === 1) {
     return carouselRef.value.select(carouselRef.value.pages)
   }
@@ -39,7 +39,8 @@ const handlePrevCarousel = () => {
 
 onMounted(() => {
   setInterval(() => {
-    if (!carouselRef.value) return
+    if (!carouselRef.value)
+      return
 
     if (carouselRef.value.page === carouselRef.value.pages) {
       return carouselRef.value.select(0)
@@ -151,7 +152,7 @@ definePageMeta({
           class="w-full mx-auto"
         >
           <div
-            class="relative w-full bg-white lg:aspect-[2/1]"
+            class="relative w-full bg-white lg:aspect-2/1"
             data-aos="fade-right"
           >
             <div class="grid h-full grid-cols-1 lg:grid-cols-2">
