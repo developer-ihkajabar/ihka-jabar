@@ -1,4 +1,4 @@
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const newsId = getRouterParam(event, 'newsId')
   const isJpg = await useStorage('fs').hasItem(`news/${newsId}.jpg`)
   const isPng = await useStorage('fs').hasItem(`news/${newsId}.png`)

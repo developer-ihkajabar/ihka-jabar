@@ -1,8 +1,9 @@
-// import { PrismaClient } from '@prisma/client'
-// import prisma from '@@/lib/prisma'
-
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const db = getDb(event)
-  const data = await db.prepare('SELECT * FROM admin order by id desc').all()
-  return data.results
+
+  const admins = await db.query.adminTable.findMany({
+    orderBy: (adminTable, {desc}) => [desc(adminTable.id)]
+  })
+  
+  return admins
 })

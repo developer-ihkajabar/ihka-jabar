@@ -1,4 +1,4 @@
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const newsId = getRouterParam(event, 'newsId')
   const kv = event.context.cloudflare.env['ihka-jabar-kv']
 
