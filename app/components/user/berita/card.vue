@@ -34,7 +34,7 @@ onMounted(() => {
     <div class="rounded-md">
       <img
         :src="imgSrc"
-        class="aspect-[2/1] w-full rounded-md object-cover"
+        class="aspect-2/1 w-full rounded-md object-cover"
       >
     </div>
     <div class="space-y-3">

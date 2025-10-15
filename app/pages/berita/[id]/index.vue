@@ -55,8 +55,8 @@ onMounted(async () => {
       </p>
     </div>
     <div class="px-6 lg:px-20">
-      <div class="mx-auto aspect-video w-full lg:w-[44rem]">
-        <div class="aspect-[2/1] w-full bg-slate-300 rounded-md overflow-hidden">
+      <div class="mx-auto aspect-video w-full lg:w-176">
+        <div class="aspect-2/1 w-full bg-slate-300 rounded-md overflow-hidden">
           <img
             :src="imgSrc"
             class="w-full h-full object-cover"

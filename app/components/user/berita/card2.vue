@@ -30,7 +30,7 @@ onMounted(() => {
     class="flex flex-col gap-3 lg:gap-8 px-4 md:flex-row md:px-0"
   >
     <div class="w-full px-0 lg:w-5/12 lg:px-6">
-      <div class="aspect-[2/1] w-full bg-slate-300 rounded-md overflow-hidden">
+      <div class="aspect-2/1 w-full bg-slate-300 rounded-md overflow-hidden">
         <img
           :src="imgSrc"
           class="w-full h-full object-cover"

@@ -30,7 +30,7 @@ definePageMeta({
             className="space-y-2"
             data-aos="fade-up"
           >
-            <div className="relative aspect-[4/3] w-full bg-orange-500 before:absolute before:-z-10 before:h-full before:w-full before:-translate-x-10 before:-translate-y-9 before:bg-slate-400 before:content-['']">
+            <div className="relative aspect-4/3 w-full bg-orange-500 before:absolute before:-z-10 before:h-full before:w-full before:-translate-x-10 before:-translate-y-9 before:bg-slate-400 before:content-['']">
               <img
                 className="object-cover w-full h-full"
                 :src="programItem.imgSrc"
@@ -56,7 +56,7 @@ definePageMeta({
             className="space-y-2"
             data-aos="fade-up"
           >
-            <div className="relative aspect-[4/3] w-full bg-orange-500 before:absolute before:-z-10 before:h-full before:w-full before:-translate-y-9 before:translate-x-10 before:bg-slate-400 before:content-['']">
+            <div className="relative aspect-4/3 w-full bg-orange-500 before:absolute before:-z-10 before:h-full before:w-full before:-translate-y-9 before:translate-x-10 before:bg-slate-400 before:content-['']">
               <img
                 className="object-cover w-full h-full"
                 :src="programItem.imgSrc"

@@ -12,7 +12,7 @@ const { logout } = useAuthAdminStore()
         />
         Admin
       </div>
-      <div class="w-full h-[1px] bg-slate-200" />
+      <div class="w-full h-px bg-slate-200" />
       <div class="flex flex-col gap-2 text-lg">
         <NuxtLink
           :to="{ name: 'Berita' }"

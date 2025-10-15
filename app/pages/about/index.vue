@@ -38,7 +38,7 @@ definePageMeta({
             Keinginan IHKA
           </h2>
           <div class="w-full px-4 lg:px-16">
-            <div class="relative aspect-[5/1] w-full bg-orange-200 before:absolute before:-z-10 before:h-full before:w-full before:-translate-y-6 before:translate-x-6 before:bg-slate-200 before:content-[''] lg:aspect-[9/1]">
+            <div class="relative aspect-5/1 w-full bg-orange-200 before:absolute before:-z-10 before:h-full before:w-full before:-translate-y-6 before:translate-x-6 before:bg-slate-200 before:content-[''] lg:aspect-9/1">
               <img
                 class="object-cover w-full h-full"
                 src="/img/keinginanIhka.png"

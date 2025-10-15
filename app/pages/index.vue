@@ -151,7 +151,7 @@ definePageMeta({
           class="w-full mx-auto"
         >
           <div
-            class="relative w-full bg-white lg:aspect-[2/1]"
+            class="relative w-full bg-white lg:aspect-2/1"
             data-aos="fade-right"
           >
             <div class="grid h-full grid-cols-1 lg:grid-cols-2">

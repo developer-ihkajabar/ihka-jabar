@@ -67,7 +67,7 @@ onMounted(async () => {
   <div
     class="h-36 transition-all border border-slate-300 relative bg-zinc-50 duration-150 easy-in-out rounded-md w-full flex items-center px-3 py-3 gap-3 hover:bg-blue-50 hover:scale-[1.015] hover:border-blue-300"
   >
-    <div class="h-full aspect-[1/1] rounded-md">
+    <div class="h-full aspect-square rounded-md">
       <img
         :src="imgSrc"
         class="h-full w-full rounded-md object-cover"
@@ -120,7 +120,7 @@ onMounted(async () => {
       <div class="relative">
         <button
           ref="buttonMenuRef"
-          class="w-8 flex items-center justify-center rounded-lg aspect-[1/1] transition-all duration-150 hover:bg-slate-300"
+          class="w-8 flex items-center justify-center rounded-lg aspect-square transition-all duration-150 hover:bg-slate-300"
           @click="toggleAdminMenu"
         >
           <Icon
