@@ -1,4 +1,4 @@
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const newsId = getRouterParam(event, 'beritaId')
   const db = event.context.cloudflare.env.DB
 

@@ -1,4 +1,4 @@
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const newsId = getRouterParam(event, 'beritaId')
   const token = event.node.req.headers.authorization?.split(' ')[1]
   const db = event.context.cloudflare.env.DB

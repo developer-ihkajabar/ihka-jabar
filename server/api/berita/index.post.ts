@@ -1,6 +1,6 @@
 import { validateJWT } from 'oslo/jwt'
 
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   // const adminId = event.context.adminId
   // const adminType = event.context.adminType
   const token = event.node.req.headers.authorization?.split(' ')[1]

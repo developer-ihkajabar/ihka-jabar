@@ -1,4 +1,4 @@
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const db = getDb(event)
   const id = Number(getRouterParam(event, 'id'))
 
