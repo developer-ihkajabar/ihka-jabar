@@ -1,10 +1,17 @@
+import { eq } from 'drizzle-orm'
 import { validateJWT } from 'oslo/jwt'
+import z from 'zod'
+import { newsTable } from '~~/server/db/schema'
+
+const DetailNewsRequestParamSchema = z.object({
+  beritaId: z.string().regex(/^[0-9]+$/).transform(Number)
+})
 
 export default defineEventHandler(async (event) => {
-  const newsId = getRouterParam(event, 'beritaId')
+  const { beritaId } = await getValidatedRouterParams(event, DetailNewsRequestParamSchema.parse)
 
   const token = event.node.req.headers.authorization?.split(' ')[1]
-  const db = event.context.cloudflare.env.DB
+  const db = getDb(event)
   const kv = event.context.cloudflare.env['ihka-jabar-kv']
 
   if (!token) {
@@ -12,25 +19,10 @@ export default defineEventHandler(async (event) => {
     return 'Unauthorized'
   }
 
-  const adminId = ((await validateJWT('HS256', jwtSecret, token)).payload as { id: string }).id
-  // const admin = await db.prepare('select * from admin where id = ?').bind(adminId).first()
+  // TODO: check only admin can delete news
+  // const adminId = ((await validateJWT('HS256', jwtSecret, token)).payload as { id: string }).id
 
-  await db.prepare(`
-    DELETE FROM news WHERE id = ?
-  `).bind(newsId).run()
+  await db.delete(newsTable).where(eq(newsTable.id, beritaId))
 
-  await kv.delete(`images/news/${newsId}`)
-  // if (!event.context.moderatorId && !event.context.adminId) {
-  //   setResponseStatus(event, 401, 'Unauthorized: Anda bukan moderator atau admin')
-  //   return 'Unauthorized: Anda bukan moderator atau admin'
-  // }
-  // const newsId = getRouterParam(event, 'beritaId')
-  // await prisma.news.delete({
-  //   where: { id: parseInt(newsId) }
-  // })
-  // await $fetch(`/api/berita/images/${newsId}`, {
-  //   method: 'DELETE',
-  // })
-  // setResponseStatus(event, 200)
-  // return new Response(null, { status: 200 })
+  await kv.delete(`images/news/${beritaId}`)
 })

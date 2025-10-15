@@ -73,3 +73,12 @@ export const newsRelations = relations(newsTable, ({ one }) => ({
     relationName: 'approvedNews',
   }),
 }));
+
+export type AdminSelect = typeof adminTable.$inferSelect
+export type AdminInsert = typeof adminTable.$inferInsert
+export type CabangSelect = typeof cabangTable.$inferSelect
+export type CabangInsert = typeof cabangTable.$inferInsert
+export type NewsSelect = typeof newsTable.$inferSelect
+export type NewsInsert = typeof newsTable.$inferInsert
+export type SuperadminSelect = typeof superadminTable.$inferSelect
+export type SuperadminInsert = typeof superadminTable.$inferInsert

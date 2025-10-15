@@ -1,13 +1,20 @@
 // import { prisma } from "~~/prisma/db"
 // import { AuthType } from "~~/types/authType"
 
+import { eq } from 'drizzle-orm'
 import { validateJWT } from 'oslo/jwt'
+import z from 'zod'
+import { newsTable } from '~~/server/db/schema'
+
+const DetailNewsRequestParamSchema = z.object({
+  beritaId: z.string().regex(/^[0-9]+$/).transform(Number)
+})
 
 export default defineEventHandler(async (event) => {
-  const newsId = getRouterParam(event, 'beritaId')
+  const { beritaId } = await getValidatedRouterParams(event, DetailNewsRequestParamSchema.parse)
 
   const token = event.node.req.headers.authorization?.split(' ')[1]
-  const db = event.context.cloudflare.env.DB
+  const db = getDb(event)
 
   if (!token) {
     setResponseStatus(event, 401, 'Unauthorized')
@@ -15,15 +22,26 @@ export default defineEventHandler(async (event) => {
   }
 
   const adminId = ((await validateJWT('HS256', jwtSecret, token)).payload as { id: string }).id
-  const admin = await db.prepare('select * from admin where id = ?').bind(adminId).first()
-  const isModerator = admin!.is_moderator === 1
+  const admin = await db.query.adminTable.findFirst({
+    where: (adminTable, { eq }) => eq(adminTable.id, Number.parseInt(adminId))
+  })
+  const isModerator = admin!.isModerator === true
 
   if (!isModerator) {
     setResponseStatus(event, 401)
     return 'Unauthorized: Anda bukan moderator'
   }
 
-  const news = await db.prepare('select * from news where id = ?').bind(newsId).first()
+  const news = await db.query.newsTable.findFirst({
+    where: (newsTable, { eq }) => eq(newsTable.id, beritaId)
+  })
 
-  await db.prepare('update news set is_published = 0, approved_by = ? where id = ?').bind(adminId, newsId).run()
+  if (news!.adminId === Number.parseInt(adminId)) {
+    setResponseStatus(event, 401)
+    return 'Tidak bisa menyetujui berita sendiri'
+  }
+
+  await db.update(newsTable).set({ isPublished: false, approvedBy: Number.parseInt(adminId) }).where(eq(newsTable.id, beritaId))
+
+  return 'Berita berhasil disetujui'
 })

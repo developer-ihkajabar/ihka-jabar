@@ -1,32 +1,32 @@
-export default defineEventHandler(async (event) => {
+
+import { eq } from "drizzle-orm"
+import z from "zod"
+import { SuperadminInsert, superadminTable } from "~~/server/db/schema"
+
+const SuperadminUpdateParamSchema = z.object({
+  id: z.string().regex(/^[0-9]+$/).transform(Number)
+})
+
+const SuperadminUpdateSchema = z.object({
+  username: z.string(),
+  password: z.string(),
+})
+
+export default eventHandler(async (event) => {
+  const { id } = await getValidatedRouterParams(event, SuperadminUpdateParamSchema.parse)
   const db = getDb(event)
-  const id = Number(getRouterParam(event, 'id'))
 
   const {
     username,
     password,
-  } = await readBody(event)
+  } = await readValidatedBody(event, SuperadminUpdateSchema.parse)
 
-  if (!username) {
-    await db.prepare(`
-      UPDATE superadmin
-      SET password = ?
-      WHERE id = ?;
-    `).bind(
-      password,
-      id,
-    ).run()
+  const superadminData: SuperadminInsert = {
+    username,
+    password,
   }
-  else if (!password) {
-    await db.prepare(`
-      UPDATE superadmin
-      SET username = ?
-      WHERE id = ?;
-    `).bind(
-      username,
-      id,
-    ).run()
-  }
+
+  await db.update(superadminTable).set(superadminData).where(eq(superadminTable.id, id))
 
   setResponseStatus(event, 200, 'Superadmin berhasil diupdate')
   return 'Superadmin berhasil diupdate'

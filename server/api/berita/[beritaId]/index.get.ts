@@ -1,7 +1,18 @@
-export default defineEventHandler(async (event) => {
-  const newsId = getRouterParam(event, 'beritaId')
-  const db = event.context.cloudflare.env.DB
+import z from "zod"
 
-  const news = await db.prepare('select * from news where id = ?').bind(newsId).first()
+
+const DetailNewsRequestParamSchema = z.object({
+  beritaId: z.string().regex(/^[0-9]+$/).transform(Number)
+})
+
+export default defineEventHandler(async (event) => {
+  const { beritaId } = await getValidatedRouterParams(event, DetailNewsRequestParamSchema.parse)
+
+  const db = getDb(event)
+
+  const news = await db.query.newsTable.findFirst({
+    where: (newsTable, { eq }) => eq(newsTable.id, beritaId)
+  })
+
   return news
 })

@@ -16,6 +16,9 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'cloudflare-pages',
+    cloudflareDev: {
+      configPath: './wrangler.toml',
+    },
   },
 
   vite: {
@@ -24,12 +27,10 @@ export default defineNuxtConfig({
     ],
   },
 
-  // https://eslint.nuxt.com
   eslint: {
     config: {
       standalone: false,
       autoInit: true,
     },
   },
-
 })
