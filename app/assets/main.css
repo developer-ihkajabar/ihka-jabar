@@ -1,1 +1,17 @@
 @import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  --color-cobalt-50: #ebf8ff;
+  --color-cobalt-100: #d1efff;
+  --color-cobalt-200: #aee4ff;
+  --color-cobalt-300: #76d6ff;
+  --color-cobalt-400: #35bdff;
+  --color-cobalt-500: #0797ff;
+  --color-cobalt-600: #0071ff;
+  --color-cobalt-700: #0058ff;
+  --color-cobalt-800: #0048d7;
+  --color-cobalt-900: #003f9f;
+  --color-cobalt-950: #062965;
+  --color-dark-cobalt: #002358;
+}
