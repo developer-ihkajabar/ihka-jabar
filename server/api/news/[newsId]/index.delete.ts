@@ -3,11 +3,11 @@ import z from 'zod'
 import { newsTable } from '~~/server/db/schema'
 
 const DetailNewsRequestParamSchema = z.object({
-  beritaId: z.string().regex(/^\d+$/).transform(Number),
+  newsId: z.string().regex(/^\d+$/).transform(Number),
 })
 
 export default defineEventHandler(async (event) => {
-  const { beritaId } = await getValidatedRouterParams(event, DetailNewsRequestParamSchema.parse)
+  const { newsId } = await getValidatedRouterParams(event, DetailNewsRequestParamSchema.parse)
 
   const token = event.node.req.headers.authorization?.split(' ')[1]
   const db = getDb(event)
@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
   // TODO: check only admin can delete news
   // const adminId = ((await validateJWT('HS256', jwtSecret, token)).payload as { id: string }).id
 
-  await db.delete(newsTable).where(eq(newsTable.id, beritaId))
+  await db.delete(newsTable).where(eq(newsTable.id, newsId))
 
-  await kv.delete(`images/news/${beritaId}`)
+  await kv.delete(`images/news/${newsId}`)
 })

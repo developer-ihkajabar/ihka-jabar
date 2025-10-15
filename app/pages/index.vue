@@ -1,7 +1,9 @@
 <script setup lang="ts">
-const { beritaList } = storeToRefs(useBeritaStore())
-
-const _3beritaList = computed(() => beritaList.value.slice(0, 3).filter(b => b.is_published === 1))
+const { data: newss } = await useFetch('/api/berita', {
+  query: {
+    limit: 3,
+  },
+})
 
 const items = [
   {
@@ -205,9 +207,9 @@ definePageMeta({
         <span class="h-0.5 w-full bg-blue-800" />
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-3 px-4 lg:px-0 gap-14 lg:gap-4">
-        <template v-if="_3beritaList.length > 0">
+        <template v-if="newss && newss.length > 0">
           <UserBeritaCard
-            v-for="berita in _3beritaList"
+            v-for="berita in newss"
             :key="berita.id"
             :news="berita"
           />

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import programs from '~/data/program'
+import programs from '~/assets/data/program'
 
 definePageMeta({
   name: 'Program',

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import strukturAsosiasi from '~/data/strukturAsosiasi'
+import strukturAsosiasi from '~/assets/data/strukturAsosiasi'
 
 definePageMeta({
   name: 'About',

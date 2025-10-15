@@ -1,28 +1,22 @@
 <script lang="ts" setup>
-import type { Berita } from '~~/types/Berita'
-
 const { news } = defineProps<{
-  news: Berita
+  news: News
 }>()
 
-const { getCabangById } = useCabangStore()
-
 const imgSrc = ref<string>()
-const cabang = news.cabang_id ? getCabangById(news.cabang_id) : null
+// const cabang = news.cabang_id ? getCabangById(news.cabang_id) : null
+// const {} = await useFetch('')
 
 async function getImgSrc() {
   const data = await $fetch<string>(`/api/berita/images/${news.id}`, {
     method: 'GET',
     onResponseError: (error) => {
       console.error(error)
-      console.log(error.error)
     },
   })
 
   imgSrc.value = data
 }
-
-console.log(news)
 
 onMounted(() => {
   getImgSrc()
@@ -46,7 +40,7 @@ onMounted(() => {
           {{ news.title }}
         </h3>
         <p class="text-xs">
-          {{ cabang?.name ?? 'IHKA Jawa Barat' }}
+          <!-- {{ cabang?.name ?? 'IHKA Jawa Barat' }} -->
         </p>
       </div>
       <NuxtLink

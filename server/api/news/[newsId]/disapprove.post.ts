@@ -1,17 +1,21 @@
+// import { prisma } from "~~/prisma/db"
+// import { AuthType } from "~~/types/authType"
+
 import { eq } from 'drizzle-orm'
 import { validateJWT } from 'oslo/jwt'
 import z from 'zod'
 import { newsTable } from '~~/server/db/schema'
 
 const DetailNewsRequestParamSchema = z.object({
-  beritaId: z.string().regex(/^\d+$/).transform(Number),
+  newsId: z.string().regex(/^\d+$/).transform(Number),
 })
 
 export default defineEventHandler(async (event) => {
-  const { beritaId } = await getValidatedRouterParams(event, DetailNewsRequestParamSchema.parse)
+  const { newsId } = await getValidatedRouterParams(event, DetailNewsRequestParamSchema.parse)
 
   const token = event.node.req.headers.authorization?.split(' ')[1]
   const db = getDb(event)
+
   if (!token) {
     setResponseStatus(event, 401, 'Unauthorized')
     return 'Unauthorized'
@@ -29,7 +33,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const news = await db.query.newsTable.findFirst({
-    where: (newsTable, { eq }) => eq(newsTable.id, beritaId),
+    where: (newsTable, { eq }) => eq(newsTable.id, newsId),
   })
 
   if (news!.adminId === Number.parseInt(adminId)) {
@@ -37,7 +41,7 @@ export default defineEventHandler(async (event) => {
     return 'Tidak bisa menyetujui berita sendiri'
   }
 
-  await db.update(newsTable).set({ isPublished: true, approvedBy: Number.parseInt(adminId) }).where(eq(newsTable.id, beritaId))
+  await db.update(newsTable).set({ isPublished: false, approvedBy: Number.parseInt(adminId) }).where(eq(newsTable.id, newsId))
 
   return 'Berita berhasil disetujui'
 })
