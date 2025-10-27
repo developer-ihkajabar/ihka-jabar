@@ -12,7 +12,8 @@
     "cf-typegen": "wrangler types",
     "lint": "eslint . --fix",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "wrangler d1 migrations apply ihka-jabar"
+    "db:migrate": "wrangler d1 migrations apply ihka-jabar",
+    "db:seed": "wrangler d1 execute ihka-jabar --file=./server/db/seeds/up.sql"
   },
   "dependencies": {
     "@nuxt/image": "^1.11.0",
