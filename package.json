@@ -9,11 +9,14 @@
     "preview": "npm run build && wrangler pages dev",
     "postinstall": "nuxt prepare",
     "deploy": "npm run build && wrangler pages deploy",
+    "deploy:development": "npm run build && wrangler pages deploy --branch=development",
     "cf-typegen": "wrangler types",
     "lint": "eslint . --fix",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "wrangler d1 migrations apply ihka-jabar",
-    "db:seed": "wrangler d1 execute ihka-jabar --file=./server/db/seeds/up.sql"
+    "db:migrate": "wrangler d1 migrations apply ihka-jabar-v2",
+    "db:migrate:remote": "wrangler d1 migrations apply ihka-jabar-v2 --remote",
+    "db:seed": "wrangler d1 execute ihka-jabar-v2 --file=./server/db/seeds/up.sql",
+    "db:seed:remote": "wrangler d1 execute ihka-jabar-v2 --file=./server/db/seeds/up.sql --remote"
   },
   "dependencies": {
     "@nuxt/image": "^1.11.0",

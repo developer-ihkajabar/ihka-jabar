@@ -4,9 +4,9 @@ compatibility_flags = [ 'nodejs_compat' ]
 pages_build_output_dir = "./dist"
 
 [[d1_databases]]
-binding = "DB"
-database_name = "ihka-jabar"
-database_id = "ee5f9254-aef2-4a3e-a841-14a06c76bc38"
+binding = "ihka_jabar_v2"
+database_name = "ihka-jabar-v2"
+database_id = "f641cbe5-88e5-4b38-91a6-b5ab6112d42e"
 migrations_dir = "./drizzle"
 
 [[kv_namespaces]]
