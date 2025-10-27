@@ -2,6 +2,21 @@
 const { news } = defineProps<{
   news: News
 }>()
+
+const imgSrc = ref('')
+
+// this is temporary solution due to previous implementation
+async function getImgSrc() {
+  if (!news.imageUrl)
+    return
+  const data = await $fetch<string>(news.imageUrl)
+
+  imgSrc.value = data
+}
+
+onMounted(() => {
+  getImgSrc()
+})
 </script>
 
 <template>
@@ -11,8 +26,8 @@ const { news } = defineProps<{
     <div class="w-full px-0 lg:w-5/12 lg:px-6">
       <div class="aspect-2/1 w-full bg-slate-300 rounded-md overflow-hidden">
         <img
-          v-if="news.imageUrl"
-          :src="news.imageUrl"
+          v-if="imgSrc"
+          :src="imgSrc"
           class="w-full h-full object-cover"
           alt=""
         >
