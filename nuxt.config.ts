@@ -20,6 +20,9 @@ export default defineNuxtConfig({
       configPath: './wrangler.toml',
     },
   },
+  devtools: {
+    enabled: false,
+  },
 
   vite: {
     plugins: [
