@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "types": [
-      "env.d.ts"
+      "./server/env.d.ts"
     ]
   },
   "references": [
