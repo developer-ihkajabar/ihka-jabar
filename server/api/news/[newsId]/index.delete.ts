@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
 
   const token = event.node.req.headers.authorization?.split(' ')[1]
   const db = getDb(event)
-  const kv = event.context.cloudflare.env['ihka-jabar-kv']
+  const kv = event.context.cloudflare.env['ihka-jabar-kv'] as KVNamespace
 
   if (!token) {
     setResponseStatus(event, 401, 'Unauthorized')

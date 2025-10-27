@@ -1,36 +1,17 @@
 <script lang="ts" setup>
-import type { Berita } from '@@/types/Berita'
 import type { OnClickOutsideOptions } from '@vueuse/core'
 import { vOnClickOutside } from '@vueuse/components'
-import { useBeritaStore } from '@/stores/berita'
 
 // Props ========================================================================
 const props = defineProps<{
-  news: Berita
+  news: News
   isModerator?: boolean
 }>()
-
-// Dependencies ================================================================
-const newsStore = useBeritaStore()
 
 // Data ========================================================================
 const buttonMenuRef = ref<HTMLButtonElement | null>(null)
 const openMenu = ref(false)
 const imgSrc = ref<string>()
-
-// Functions ===================================================================
-
-async function getImgSrc() {
-  const data = await $fetch<string>(`/api/berita/images/${props.news.id}`, {
-    method: 'GET',
-    onResponseError: (error) => {
-      console.error(error)
-      console.log(error.error)
-    },
-  })
-
-  imgSrc.value = data
-}
 
 function toggleAdminMenu() {
   openMenu.value = !openMenu.value
@@ -43,24 +24,20 @@ const onClickOutsideHandler: [(ev: unknown) => void, OnClickOutsideOptions] = [
   { ignore: [buttonMenuRef] },
 ]
 
-async function handleDeleteNews() {
-  await newsStore.deleteNews(props.news.id)
-  openMenu.value = false
-}
+// async function handleDeleteNews() {
+//   await newsStore.deleteNews(props.news.id)
+//   openMenu.value = false
+// }
 
-async function handleApproveNews() {
-  await newsStore.approveNews(props.news.id)
-  openMenu.value = false
-}
+// async function handleApproveNews() {
+//   await newsStore.approveNews(props.news.id)
+//   openMenu.value = false
+// }
 
-async function handleDisapproveNews() {
-  await newsStore.disapproveNews(props.news.id)
-  openMenu.value = false
-}
-
-onMounted(async () => {
-  await getImgSrc()
-})
+// async function handleDisapproveNews() {
+//   await newsStore.disapproveNews(props.news.id)
+//   openMenu.value = false
+// }
 </script>
 
 <template>
@@ -85,7 +62,7 @@ onMounted(async () => {
     <div class="flex flex-col h-full w-full">
       <div class="flex-1 flex flex-col justify-center">
         <p
-          v-if="news.is_published"
+          v-if="news.isPublished"
           class="text-xs flex items-center gap-1"
         >
           <Icon
@@ -111,7 +88,7 @@ onMounted(async () => {
           </h3>
           <p
             class="line-clamp-2"
-            v-html="news.content_html"
+            v-html="news.contentHtml"
           />
         </div>
       </div>
@@ -128,14 +105,14 @@ onMounted(async () => {
             class=""
           />
         </button>
-        <div
+        <!-- <div
           v-show="openMenu"
           v-on-click-outside="onClickOutsideHandler"
           class="text-sm h-fit flex flex-col justify-end gap-2 absolute top-[103%] right-1 bg-white px-3 py-2 border rounded-lg"
         >
           <template v-if="isModerator">
             <button
-              v-if="news.is_published"
+              v-if="news.isPublished"
               class="bg-orange-50 px-2 rounded border border-orange-400"
               @click="handleDisapproveNews"
             >
@@ -155,7 +132,7 @@ onMounted(async () => {
           >
             Delete
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

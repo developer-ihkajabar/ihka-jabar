@@ -5,11 +5,13 @@ import { newsTable } from '~~/server/db/schema'
 export default defineEventHandler(async (event) => {
   const token = event.node.req.headers.authorization?.split(' ')[1]
   const db = getDb(event)
-  const kv = event.context.cloudflare.env['ihka-jabar-kv']
+  const kv = event.context.cloudflare.env['ihka-jabar-kv'] as KVNamespace
 
   if (!token) {
-    setResponseStatus(event, 401, 'Unauthorized')
-    return 'Unauthorized'
+    throw createError({
+      statusCode: 401,
+      statusMessage: 'Unauthorized',
+    })
   }
 
   const formdata = await readFormData(event)
@@ -43,6 +45,13 @@ export default defineEventHandler(async (event) => {
   }
 
   const [createdNews] = await db.insert(newsTable).values(newsData).returning()
+
+  if (!createdNews) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Failed to create news',
+    })
+  }
 
   await kv.put(`images/news/${createdNews.id}.png`, Buffer.from(await image.arrayBuffer()).toString('base64'))
 

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { cabangList } = storeToRefs(useCabangStore())
-
-const cabangList2 = computed(() => cabangList.value?.sort((a, b) => a.id - b.id))
+const { data: regions } = await useFetch('/api/regions')
 </script>
 
 <template>
@@ -20,18 +18,18 @@ const cabangList2 = computed(() => cabangList.value?.sort((a, b) => a.id - b.id)
     </div>
     <nav class="hidden md:flex h-full items-center gap-10 text-lg font-semibold text-cobalt-900 *:flex *:h-full *:items-center">
       <NuxtLink
-        :to="{ name: 'Beranda' }"
+        :to="{ name: 'index' }"
         class="align-bottom"
       >
         Beranda
       </NuxtLink>
-      <NuxtLink :to="{ name: 'About' }">
+      <NuxtLink :to="{ name: 'about' }">
         Tentang
       </NuxtLink>
-      <NuxtLink :to="{ name: 'Program' }">
+      <NuxtLink :to="{ name: 'programs' }">
         Program
       </NuxtLink>
-      <NuxtLink :to="{ name: 'BeritaDaerah' }">
+      <NuxtLink :to="{ name: 'news' }">
         Berita
       </NuxtLink>
       <div class="group relative flex items-center gap-1">
@@ -44,12 +42,12 @@ const cabangList2 = computed(() => cabangList.value?.sort((a, b) => a.id - b.id)
           class="absolute left-[30%] top-[85%] z-20 hidden translate-x-[-50%] flex-col gap-0.5 rounded-md bg-sky-100 px-2 py-2 *:text-nowrap group-hover:flex"
         >
           <NuxtLink
-            v-for="cabang in cabangList2"
-            :key="cabang.id"
-            :to="{ name: 'BeritaCabang', params: { id: cabang.id } }"
+            v-for="region in regions"
+            :key="region.id"
+            :to="{ name: 'news-regions-regionId', params: { regionId: region.id } }"
             class="rounded-md pl-4 pr-10 hover:bg-sky-200 cursor-pointer"
           >
-            {{ cabang.name }}
+            {{ region.name }}
           </NuxtLink>
         </nav>
       </div>
@@ -61,7 +59,7 @@ const cabangList2 = computed(() => cabangList.value?.sort((a, b) => a.id - b.id)
       </NuxtLink>
     </nav>
     <NuxtLink
-      :to="{ name: 'MobileNavigation' }"
+      :to="{ name: 'mobileNavigation' }"
       type="button"
       class="block md:hidden"
     >

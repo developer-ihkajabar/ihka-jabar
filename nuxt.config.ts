@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-07-30',
   modules: ['nitro-cloudflare-dev', '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/eslint', '@nuxt/ui', '@nuxt/image'],
 
-  css: ['@/assets/main.css'],
+  css: ['@/assets/css/main.css'],
 
   app: {
     head: {
@@ -27,10 +27,23 @@ export default defineNuxtConfig({
     ],
   },
 
+  experimental: {
+    typedPages: true,
+    scanPageMeta: true,
+  },
+
   eslint: {
+    checker: true,
     config: {
       standalone: false,
       autoInit: true,
     },
+  },
+  typescript: {
+    strict: true,
+    typeCheck: true,
+  },
+  ui: {
+    colorMode: false,
   },
 })

@@ -2,8 +2,6 @@
 const { news } = defineProps<{
   news: News
 }>()
-
-const imgSrc = ref<string>('')
 </script>
 
 <template>
@@ -13,7 +11,8 @@ const imgSrc = ref<string>('')
     <div class="w-full px-0 lg:w-5/12 lg:px-6">
       <div class="aspect-2/1 w-full bg-slate-300 rounded-md overflow-hidden">
         <img
-          :src="imgSrc"
+          v-if="news.imageUrl"
+          :src="news.imageUrl"
           class="w-full h-full object-cover"
           alt=""
         >

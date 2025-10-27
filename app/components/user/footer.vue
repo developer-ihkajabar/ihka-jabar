@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <footer class="text-primary">
+  <footer class="text-primary container mx-auto">
     <div class="flex flex-col space-x-0 px-14 pb-16 pt-28 lg:flex-row lg:space-x-36 lg:px-20">
       <div class="flex flex-col text-dark-cobalt">
         <span class="font-times text-6xl font-bold">IHKA</span>
@@ -14,16 +14,16 @@
             Akses Cepat
           </h3>
           <div class="flex flex-col gap-2 text-lg text-dark-cobalt">
-            <NuxtLink :to="{ name: 'Beranda' }">
+            <NuxtLink :to="{ name: 'index' }">
               Beranda
             </NuxtLink>
-            <NuxtLink :to="{ name: 'About' }">
+            <NuxtLink :to="{ name: 'about' }">
               Tentang
             </NuxtLink>
-            <NuxtLink :to="{ name: 'Program' }">
+            <NuxtLink :to="{ name: 'programs' }">
               Program
             </NuxtLink>
-            <NuxtLink :to="{ name: 'BeritaDaerah' }">
+            <NuxtLink :to="{ name: 'news' }">
               Berita
             </NuxtLink>
           </div>

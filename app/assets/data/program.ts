@@ -1,19 +1,4 @@
-export interface Program {
-  id: number
-  title: string
-  shortDescription: string
-  imgSrc: string
-  LongDescription: string
-  subTitle: string
-  explanation: {
-    id: number
-    title: string
-    description: string
-    imgSrc: string
-  }[]
-}
-
-const program = [
+const programs = [
   {
     id: 1,
     title: 'Pelatihan Dasar HouseKeeping',
@@ -33,6 +18,5 @@ const program = [
     imgSrc: '/img/program3.png',
   },
 ]
-// ] satisfies Program[]
 
-export default program
+export default programs

@@ -1,20 +1,12 @@
 <script lang="ts" setup>
-import type { Admin } from '@@/types/Admin'
 import type { OnClickOutsideOptions } from '@vueuse/core'
 import { vOnClickOutside } from '@vueuse/components'
 
-// Props ========================================================================
 const props = defineProps<{ admin: Admin }>()
 
-// Dependencies ================================================================
-const adminStore = useAdminStore()
-const cabangStore = useCabangStore()
-
-// Data ========================================================================
 const buttonMenuRef = ref<HTMLButtonElement | null>(null)
 const openMenu = ref(false)
 
-// Methods =====================================================================
 function toggleAdminMenu() {
   openMenu.value = !openMenu.value
 }
@@ -26,18 +18,18 @@ const onClickOutsideHandler: [(ev: unknown) => void, OnClickOutsideOptions] = [
   { ignore: [buttonMenuRef] },
 ]
 
-async function activateAdmin() {
-  await adminStore.activateAdmin(props.admin.id)
-  openMenu.value = false
-}
-async function deactivateAdmin() {
-  await adminStore.deactivateAdmin(props.admin.id)
-  openMenu.value = false
-}
-async function deleteAdmin() {
-  await adminStore.deleteAdmin(props.admin.id)
-  openMenu.value = false
-}
+// async function activateAdmin() {
+//   await adminStore.activateAdmin(props.admin.id)
+//   openMenu.value = false
+// }
+// async function deactivateAdmin() {
+//   await adminStore.deactivateAdmin(props.admin.id)
+//   openMenu.value = false
+// }
+// async function deleteAdmin() {
+//   await adminStore.deleteAdmin(props.admin.id)
+//   openMenu.value = false
+// }
 </script>
 
 <template>
@@ -48,7 +40,7 @@ async function deleteAdmin() {
     <div class="flex-(~ col) h-full w-full">
       <div class="flex-1 flex flex-col justify-center">
         <p
-          v-if="admin.is_active"
+          v-if="admin.isActive"
           class="text-xs flex items-center gap-1"
         >
           <Icon
@@ -69,33 +61,33 @@ async function deleteAdmin() {
           {{ admin.name }}
         </h2>
         <h2 class="text-xs capitalize">
-          {{ admin.is_moderator ? 'Admin + Moderator' : 'Admin' }}
+          {{ admin.isModerator ? 'Admin + Moderator' : 'Admin' }}
         </h2>
         <h2
-          v-if="admin.member_id"
+          v-if="admin.memberId"
           class="text-sm flex gap-1 items-center mt-2"
         >
           <Icon name="material-symbols:remember-me" />
-          {{ admin.member_id }}
+          {{ admin.memberId }}
         </h2>
         <h2 class="text-sm flex gap-1 items-center mt-2">
           <Icon name="solar:mailbox-line-duotone" />
           {{ admin.email }}
         </h2>
         <h2
-          v-if="admin.no_telp"
+          v-if="admin.noTelp"
           class="text-sm flex gap-1 items-center"
         >
           <Icon name="solar:phone-rounded-line-duotone" />
-          {{ admin.no_telp }}
+          {{ admin.noTelp }}
         </h2>
-        <h2
-          v-if="admin.cabang_id"
+        <!-- <h2
+          v-if="admin.cabangId"
           class="text-sm flex gap-1 items-center"
         >
           <Icon name="solar:point-on-map-perspective-line-duotone" />
-          {{ cabangStore.getCabangById(admin.cabang_id)?.name }}
-        </h2>
+          {{ cabangStore.getCabangById(admin.cabangId)?.name }}
+        </h2> -->
         <h2
           v-else
           class="text-sm flex gap-1 items-center"
@@ -122,8 +114,8 @@ async function deleteAdmin() {
           v-on-click-outside="onClickOutsideHandler"
           class="text-sm h-fit flex flex-col justify-end gap-2 absolute top-[103%] right-1 bg-white px-3 py-2 border rounded-lg"
         >
-          <button
-            v-if="!admin.is_active"
+          <!-- <button
+            v-if="!admin.isActive"
             class="bg-green-100 px-6 py-1 rounded border-(~ green-500)"
             @click="activateAdmin"
           >
@@ -141,7 +133,7 @@ async function deleteAdmin() {
             @click="deleteAdmin"
           >
             Delete
-          </button>
+          </button> -->
         </div>
       </div>
     </div>

@@ -5,21 +5,6 @@ const { news } = defineProps<{
 
 const imgSrc = ref<string>()
 const { data: region } = await useFetch(`/api/regions/${news.cabangId}`)
-
-async function getImgSrc() {
-  const data = await $fetch<string>(`/api/berita/images/${news.id}`, {
-    method: 'GET',
-    onResponseError: (error) => {
-      console.error(error)
-    },
-  })
-
-  imgSrc.value = data
-}
-
-onMounted(() => {
-  getImgSrc()
-})
 </script>
 
 <template>
@@ -32,10 +17,10 @@ onMounted(() => {
     </div>
     <div class="space-y-3">
       <div class="">
-        <p v-if="news.createdAt" class="text-xs">
+        <p v-if="news.createdAt" class="text-xs text-cobalt-900">
           {{ new Date(news.createdAt).toLocaleDateString('id-ID') }}
         </p>
-        <h3 class="font-semibold text-xl">
+        <h3 class="font-semibold text-xl text-cobalt-900">
           {{ news.title }}
         </h3>
         <p v-if="region" class="text-xs">
@@ -43,7 +28,7 @@ onMounted(() => {
         </p>
       </div>
       <NuxtLink
-        :to="`/berita/${news.id}`"
+        :to="`/news/${news.id}`"
         class="text-sm text-cobalt-900"
       >
         Selengkapnya <span><Icon name="solar:arrow-right-outline" /></span>

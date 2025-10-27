@@ -1,27 +1,11 @@
 <script setup lang="ts">
+import programs from '~/assets/data/program'
+
 const { data: newss } = await useFetch('/api/news', {
   query: {
     limit: 3,
   },
 })
-
-const items = [
-  {
-    imageSrc: '/img/program1.png',
-    title: 'Pelatihan HouseKeeping',
-    description: 'Pelatihan untuk menciptakan HouseKeeper yang profesional, handal dan efisien.',
-  },
-  {
-    imageSrc: '/img/program2.png',
-    title: 'Pelatihan Manajerial',
-    description: 'Pelatihan manajemen waktu dan manajemen sumber daya untuk meningkatkan produktivitas.',
-  },
-  {
-    imageSrc: '/img/program3.png',
-    title: 'Pelatihan Keterampilan Khusus',
-    description: 'Pelatihan dalam teknik-teknik khusus seperti tata cara membersihkan kamar hotel, area publik, atau fasilitas lainnya.',
-  },
-]
 
 const carouselRef = useTemplateRef('carouselRef')
 
@@ -35,20 +19,16 @@ function onClickNext() {
     return
   carouselRef.value.emblaApi?.scrollNext()
 }
-
-definePageMeta({
-  name: 'Beranda',
-})
 </script>
 
 <template>
-  <main class="">
+  <main class="bg-white">
     <div class="relative">
       <div class="">
         <div class="h-[28dvh] bg-white lg:h-[50vh]" />
         <div class="h-[68dvh] bg-blue-800 lg:h-[70vh]" />
       </div>
-      <div class="absolute left-0 top-0 z-10 h-full w-full">
+      <div class="absolute top-0 z-10 h-full">
         <div class="h-[40dvh] px-4 py-4 lg:h-[75vh] lg:px-10 lg:py-12 ">
           <div class="flex h-full w-full items-center px-[7%] hero bg-cover">
             <h2 class="text-2xl text-white lg:text-5xl">
@@ -130,7 +110,7 @@ definePageMeta({
         <UCarousel
           ref="carouselRef"
           v-slot="{ item }"
-          :items
+          :items="programs"
           :ui="{
             item: 'basis-full',
             container: 'rounded-lg',
@@ -148,9 +128,9 @@ definePageMeta({
             <div class="grid h-full grid-cols-1 lg:grid-cols-2">
               <div class="aspect-video h-full bg-cobalt-800 lg:aspect-auto">
                 <img
-                  v-if="item.imageSrc"
+                  v-if="item.imgSrc"
                   class="w-full h-full object-cover"
-                  :src="item.imageSrc"
+                  :src="item.imgSrc"
                   alt=""
                 >
               </div>
@@ -161,7 +141,7 @@ definePageMeta({
                   {{ item.title }}
                 </h3>
                 <p class="text-lg text-black lg:text-3xl lg:font-thin">
-                  {{ item.description }}
+                  {{ item.shortDescription }}
                 </p>
               </div>
             </div>
