@@ -11,7 +11,7 @@ async function getImgSrc() {
     return
   const data = await $fetch<string>(news.imageUrl)
 
-  imgSrc.value = data
+  imgSrc.value = `data:image/png;base64,${data}`
 }
 
 onMounted(() => {
